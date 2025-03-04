@@ -1,5 +1,5 @@
 import random
-from typing import List, Optional, Union, Literal, Tuple, Dict
+from typing import List, Optional, Literal, Tuple, Dict
 from poker import Carte, Main, comparer_mains, nom_combinaison, RANGS, COULEURS
 
 class JeuPoker:

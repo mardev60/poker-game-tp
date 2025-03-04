@@ -1,4 +1,4 @@
-from typing import List, Tuple, Dict, Set, Optional, Any
+from typing import List, Tuple, Dict
 
 COULEURS: List[str] = ['Coeur', 'Carreau', 'Trèfle', 'Pique']
 RANGS: List[str] = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Valet', 'Dame', 'Roi', 'As']

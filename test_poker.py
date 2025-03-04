@@ -1,5 +1,5 @@
 import unittest
-from typing import List, Tuple
+from typing import List
 from poker import Carte, Main, comparer_mains, nom_combinaison
 from jeu_poker import JeuPoker, parser_carte
 
