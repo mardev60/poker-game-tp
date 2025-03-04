@@ -66,27 +66,27 @@ class Main:
         for carte in self.cartes:
             valeurs[carte.valeur] = valeurs.get(carte.valeur, 0) + 1
         
-        groupes: List[Tuple[int, int]] = []
-        for val, count in sorted(valeurs.items(), key=lambda x: (-x[1], -x[0])):
-            groupes.append((val, count))
-        
-        return groupes
+        return sorted([(val, count) for val, count in valeurs.items()], 
+                     key=lambda x: (-x[1], -x[0]))
     
     def est_meme_couleur(self) -> bool:
         return len(set(carte.couleur for carte in self.cartes)) == 1
     
     def est_quinte(self) -> bool:
-        valeurs: List[int] = sorted([carte.valeur for carte in self.cartes])
+        valeurs = sorted([carte.valeur for carte in self.cartes])
+
         if valeurs == [0, 1, 2, 3, 12]:
             return True
-        
+
         return valeurs == list(range(min(valeurs), max(valeurs) + 1))
     
     def get_valeur_quinte(self) -> int:
-        valeurs: List[int] = sorted([carte.valeur for carte in self.cartes])
+        valeurs = sorted([carte.valeur for carte in self.cartes])
+
         if valeurs == [0, 1, 2, 3, 12]:
             return 3
-        return max(carte.valeur for carte in self.cartes)
+        
+        return max(valeurs)
     
     def est_quinte_flush(self) -> bool:
         return self.est_meme_couleur() and self.est_quinte()
@@ -97,7 +97,7 @@ class Main:
     
     def est_carre(self) -> bool:
         groupes = self.get_valeurs_par_groupes()
-        return len(groupes) >= 1 and groupes[0][1] == 4
+        return groupes and groupes[0][1] == 4
     
     def est_full(self) -> bool:
         groupes = self.get_valeurs_par_groupes()

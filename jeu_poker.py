@@ -59,31 +59,22 @@ class JeuPoker:
             return
         
         indices_a_changer: List[int] = []
+        valeurs: Dict[int, List[int]] = {}
+        
+        for i, carte in enumerate(cartes):
+            valeurs.setdefault(carte.valeur, []).append(i)
         
         if eval_main == 3:
-            valeurs: Dict[int, List[int]] = {}
-            for i, carte in enumerate(cartes):
-                valeurs[carte.valeur] = valeurs.get(carte.valeur, []) + [i]
-            
             for val, indices in valeurs.items():
-                if len(indices) == 3:
-                    continue
-                indices_a_changer.extend(indices)
+                if len(indices) != 3:
+                    indices_a_changer.extend(indices)
         
         elif eval_main == 2:
-            valeurs: Dict[int, List[int]] = {}
-            for i, carte in enumerate(cartes):
-                valeurs[carte.valeur] = valeurs.get(carte.valeur, []) + [i]
-            
             for val, indices in valeurs.items():
                 if len(indices) == 1:
                     indices_a_changer.extend(indices)
         
         elif eval_main == 1:
-            valeurs: Dict[int, List[int]] = {}
-            for i, carte in enumerate(cartes):
-                valeurs[carte.valeur] = valeurs.get(carte.valeur, []) + [i]
-            
             for val, indices in valeurs.items():
                 if len(indices) == 1:
                     indices_a_changer.extend(indices)
@@ -149,7 +140,7 @@ def parser_carte(texte: str) -> Tuple[str, str]:
         conversion_couleur = {
             'C': 'Coeur', 'H': 'Coeur', '♥': 'Coeur',
             'K': 'Carreau', 'D': 'Carreau', '♦': 'Carreau',
-            'T': 'Trèfle', 'S': 'Trèfle', '♣': 'Trèfle',
+            'T': 'Trèfle', 'F': 'Trèfle', '♣': 'Trèfle',
             'P': 'Pique', 'S': 'Pique', '♠': 'Pique'
         }
         
